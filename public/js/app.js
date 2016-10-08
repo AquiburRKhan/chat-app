@@ -14,7 +14,7 @@ angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfig
             controller: 'signupController'
         })
 
-        .when('/chatRoom', {
+        .when('/chatroom', {
             templateUrl: 'templates/chatRoom/chatRoom.html',
             controller: 'chatRoomController'
         });
