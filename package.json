@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/AquiburRKhan/chat-app/issues"
   },
-  "homepage": "https://github.com/AquiburRKhan/chat-app#readme"
+  "homepage": "https://github.com/AquiburRKhan/chat-app#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongoose": "^4.6.3",
+    "socket.io": "^1.5.0"
+  }
 }
