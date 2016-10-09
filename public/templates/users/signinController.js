@@ -1,22 +1,31 @@
 angular.module('user')
 
-.controller('signinController',function($scope, $http){
-  console.log("hello from signinctrl");
+.controller('signinController',function($scope, $http, $location){
+  $scope.error = "";
 
-$scope.login = function(username, password){
-  console.log(username);
-  console.log(password);
-  $http({
-  method: 'POST',
-  url: '/login',
-  data: {username: username, password: password}
-}).then(function successCallback(response) {
-    // this callback will be called asynchronously
-    // when the response is available
-  }, function errorCallback(response) {
-    // called asynchronously if an error occurs
-    // or server returns response with an error status.
-  });
-}
+  $scope.login = function(username, password) {
+      $http({
+          url: '/api/loginUser',
+          method: 'GET',
+          params: {
+              username: username,
+              password: password
+          }
+      }).then(function successCallback(response) {
+          console.log(response);
+          if(response.data==null){
+            $scope.error = "Incorrect username or password";
+          }
+          else if(response.status == 200 && response.data!=null){
+
+          $scope.error = "";
+          $location.path("/chatroom/"+ response.data.username);
+          }
+
+      }, function errorCallback(error) {
+          console.log(error);
+          $scope.error = "Login Failed, Please Try Again"
+      });
+  }
 
 })

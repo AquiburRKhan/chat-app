@@ -40,3 +40,34 @@ body {
   background-color: white;
   overflow-y: scroll;
 }
+
+.homeButtonCSS{
+  margin-top: 20px;
+}
+
+.errorMsgCSS{
+  text-align: center;
+  padding:15px 25px;
+  font-weight: bolder;
+  font-size: 1.2em;
+  color: #f00;
+}
+
+.usersCSS{
+  text-align: center;
+  padding:10px 20px;
+  font-weight: bolder;
+  font-size: 1em;
+  color: black;
+}
+
+.userDivCSS{
+  border-bottom: 1px solid gray;
+  padding-bottom: 10px;
+  cursor: pointer;
+}
+
+.offlineUserDivCSS{
+  border-bottom: 1px solid gray;
+  padding-bottom: 10px;
+}

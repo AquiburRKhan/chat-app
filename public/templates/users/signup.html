@@ -1,6 +1,8 @@
 <div class="wrapper">
     <h2 class="form-signin-heading">Signup</h2>
-    <input type="text" class="form-control" name="username" placeholder="Username" />
-    <input type="password" class="form-control" name="password" placeholder="Password" id="password" />
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Signup</button>
+    <input type="text" class="form-control" ng-model="username" placeholder="Username" />
+    <input type="password" class="form-control" ng-model="password" placeholder="Password" id="password" />
+    <button class="btn btn-lg btn-primary btn-block" ng-click="signup(username,password)" type="submit">Signup</button>
+    <a class="linkDecoration" href="/"><button class="homeButtonCSS btn btn-lg btn-info btn-block">Home</button></a>
+    <p ng-if="error!=''" class="errorMsgCSS">{{error}}</p>
 </div>

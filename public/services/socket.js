@@ -1,6 +1,6 @@
 angular.module('chatroom')
 
-.service('socket', function() {
+.service('socketService', function() {
   var self = this;
   var socket;
 
