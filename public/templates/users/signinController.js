@@ -20,7 +20,7 @@ angular.module('user')
             console.log(response);
             if (response.data == null) {
                 $scope.error = "Incorrect username or password";
-            } else if (response.status == 200 && response.data != null) {
+            } else if (response.status == 200 && response.data != null && response.data.token != '') {
                 $scope.error = "";
                 socket.emit('user login', {
                     username: response.data.username

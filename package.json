@@ -18,6 +18,7 @@
   "homepage": "https://github.com/AquiburRKhan/chat-app#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "crypto": "0.0.3",
     "express": "^4.14.0",
     "mongoose": "^4.6.3",
     "socket.io": "^1.5.0"

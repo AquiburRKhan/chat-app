@@ -1,4 +1,9 @@
 var User = require('./models/user');
+var crypto = require('crypto');
+
+function generateToken(cb) {
+    crypto.randomBytes(64, cb);
+}
 
 exports.loadIndex = function(req, res) {
     res.sendFile('./public/index.html');
@@ -23,18 +28,32 @@ exports.login = function(req, res) {
         if (err) {
             return res.send(err);
         } else if (user != null) {
-            // update login status of user
-            User.findOneAndUpdate({
-                username: user.username
-            }, {
-                loginStatus: 'true'
-            }, function(err, user) {
+            generateToken(function(err, token) {
                 if (err) {
-                    return res.send(err);
+                    cb(err);
+                    return;
                 }
+                token = token.toString('base64');
+                // update login status and token of user
+                User.findOneAndUpdate({
+                        username: user.username
+                    }, {
+                        loginStatus: 'true',
+                        token: token
+                    }, {
+                        new: true
+                    },
+                    function(err, user) {
+                        if (err) {
+                            return res.send(err);
+                        }
+                        res.json(user);
+                    });
             });
         }
+       else{
         res.json(user);
+        }
     })
 };
 
@@ -52,7 +71,10 @@ exports.logout = function(req, res) {
     User.findOneAndUpdate({
         username: user.username
     }, {
-        loginStatus: 'false'
+        loginStatus: 'false',
+        token: ""
+    }, {
+        new: true
     }, function(err, user) {
         if (err) {
             return res.send(err);
