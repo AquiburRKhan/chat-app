@@ -22,17 +22,18 @@ exports.login = function(req, res) {
     }, function(err, user) {
         if (err) {
             return res.send(err);
+        } else if (user != null) {
+            // update login status of user
+            User.findOneAndUpdate({
+                username: user.username
+            }, {
+                loginStatus: 'true'
+            }, function(err, user) {
+                if (err) {
+                    return res.send(err);
+                }
+            });
         }
-        // update login status of user
-        User.findOneAndUpdate({
-            username: user.username
-        }, {
-            loginStatus: 'true'
-        }, function(err, user) {
-            if (err) {
-                return res.send(err);
-            }
-        });
         res.json(user);
     })
 };

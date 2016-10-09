@@ -1,6 +1,6 @@
 angular.module('chatroom')
 
-.controller('chatRoomController', function($scope, socketService, $http, $routeParams ,$location) {
+.controller('chatRoomController', function($scope, socketService, $http, $routeParams, $location) {
     var socket = socketService.getSocket();
     $scope.error = "";
     $scope.selectedUsername = "";
@@ -28,7 +28,7 @@ angular.module('chatroom')
         $scope.users = allUsers.filter(function(user) {
             return user.username !== signedInUserName;
         });
-          $scope.error = "";
+        $scope.error = "";
     }
 
     $scope.selectUser = function(selectUser) {
@@ -38,9 +38,12 @@ angular.module('chatroom')
     }
 
     $scope.sendMessage = function(message) {
-      $scope.messages.push({username: $routeParams.username,message: message});
+        $scope.messages.push({
+            username: $routeParams.username,
+            message: message
+        });
         var messageDetails = {
-            to : $scope.selectedUsername,
+            to: $scope.selectedUsername,
             username: $routeParams.username,
             message: message
         }
@@ -57,13 +60,17 @@ angular.module('chatroom')
         $http({
             method: 'PUT',
             url: '/api/logoutUser',
-            data: {username: $routeParams.username}
+            data: {
+                username: $routeParams.username
+            }
         }).then(function successCallback(response) {
             console.log(response);
             if (response.data == null) {
                 $scope.error = "Logging out Failed, Please Try Again";
             } else if (response.status == 200 && response.data != null) {
-              socket.emit('user logout', {username: response.data.username});
+                socket.emit('user logout', {
+                    username: response.data.username
+                });
                 $location.path("/");
             }
 
@@ -74,12 +81,16 @@ angular.module('chatroom')
     }
 
     socket.on('new user', function() {
-      console.log("new user");
-      $scope.getAllUsers();
+        console.log("new user");
+        $scope.getAllUsers();
     })
 
     socket.on('user left', function() {
-      $scope.getAllUsers();
+        $scope.getAllUsers();
+    })
+
+    socket.on('user signup', function() {
+        $scope.getAllUsers();
     })
 
 

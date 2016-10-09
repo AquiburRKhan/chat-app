@@ -20,7 +20,7 @@ require('./app/routes')(app);
 io.on('connection', function(socket) {
     console.log('socket connected');
     socket.on('send message', function(messageDetails) {
-       io.sockets.connected[users[messageDetails.to]].emit('get message', messageDetails);
+        io.sockets.connected[users[messageDetails.to]].emit('get message', messageDetails);
     });
     socket.on('user login', function(user) {
         users[user.username] = socket.id;
@@ -31,6 +31,9 @@ io.on('connection', function(socket) {
         delete users[user.username]
         console.log(users);
         io.sockets.emit('user left');
+    });
+    socket.on('user signedup', function(user) {
+        io.sockets.emit('user signup');
     });
 });
 

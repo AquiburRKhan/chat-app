@@ -1,77 +1,81 @@
 body {
-  background: #eee !important;
+    background: #eee !important;
 }
+
 .wrapper {
-  margin-top: 80px;
-  margin-bottom: 80px;
+    margin-top: 80px;
+    margin-bottom: 80px;
 }
+
 .form-signin {
-  max-width: 380px;
-  padding: 15px 35px 45px;
-  margin: 0 auto;
-  background-color: #fff;
+    max-width: 380px;
+    padding: 15px 35px 45px;
+    margin: 0 auto;
+    background-color: #fff;
 }
+
 .form-signin-heading {
-  margin-top: 30px;
-  text-align: center;
+    margin-top: 30px;
+    text-align: center;
 }
+
 .form-control {
-  position: relative;
-  font-size: 16px;
-  height: auto;
-  padding: 10px;
-  margin: 10px auto;
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    margin: 10px auto;
 }
 
-.linkDecoration:hover{
-  text-decoration: none;
+.linkDecoration:hover {
+    text-decoration: none;
 }
 
-.HeadingCSS .panel{
-  margin-bottom: 0px;
-  border-radius: 0px;
+.HeadingCSS .panel {
+    margin-bottom: 0px;
+    border-radius: 0px;
 }
 
-.chatBoxCSS{
-  width: 100%;
-  height: 300px;
-  max-height: 400px;
-  display: block;
-  background-color: white;
-  overflow-y: scroll;
+.chatBoxCSS {
+    width: 100%;
+    height: 300px;
+    max-height: 400px;
+    display: block;
+    background-color: white;
+    overflow-y: scroll;
 }
 
-.homeButtonCSS{
-  margin-top: 20px;
+.homeButtonCSS {
+    margin-top: 20px;
 }
 
-.errorMsgCSS{
-  text-align: center;
-  padding:15px 25px;
-  font-weight: bolder;
-  font-size: 1.2em;
-  color: #f00;
+.errorMsgCSS {
+    text-align: center;
+    padding: 15px 25px;
+    font-weight: bolder;
+    font-size: 1.2em;
+    color: #f00;
 }
 
-.usersCSS{
-  text-align: center;
-  padding:10px 20px;
-  font-weight: bolder;
-  font-size: 1em;
-  color: black;
+.usersCSS {
+    text-align: center;
+    padding: 10px 20px;
+    font-weight: bolder;
+    font-size: 1em;
+    color: black;
 }
 
-.userDivCSS{
-  border-bottom: 1px solid gray;
-  padding-bottom: 10px;
-  cursor: pointer;
+.userDivCSS {
+    border-bottom: 1px solid gray;
+    padding-bottom: 10px;
+    cursor: pointer;
 }
 
-.offlineUserDivCSS{
-  border-bottom: 1px solid gray;
-  padding-bottom: 10px;
+.offlineUserDivCSS {
+    border-bottom: 1px solid gray;
+    padding-bottom: 10px;
 }
 
-.listCSS{
-  list-style-type: none;
+.listCSS {
+    list-style-type: none;
 }

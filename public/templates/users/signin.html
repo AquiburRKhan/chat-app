@@ -1,13 +1,13 @@
 <div class="wrapper" ng-init="connectToSocket()">
-      <h2 class="form-signin-heading">Login</h2>
-      <input type="text" class="form-control" ng-model="username" placeholder="Username" autofocus="" />
-      <input type="password" class="form-control" ng-model="password" placeholder="Password" />
-      <a class="linkDecoration">
+    <h2 class="form-signin-heading">Login</h2>
+    <input type="text" class="form-control" ng-model="username" placeholder="Username" autofocus="" />
+    <input type="password" class="form-control" ng-model="password" placeholder="Password" />
+    <a class="linkDecoration">
         <button class="btn btn-lg btn-primary btn-block" ng-click="login(username,password)">Login</button>
-      </a>
-  <h4 class="form-signin-heading">Don't Have an Account</h4>
-  <a class="linkDecoration" href="/signup">
-    <button class="btn btn-lg btn-dark btn-block" >Signup</button>
-  </a>
-  <p ng-if="error!=''" class="errorMsgCSS">{{error}}</p>
+    </a>
+    <h4 class="form-signin-heading">Don't Have an Account</h4>
+    <a class="linkDecoration" href="/signup">
+        <button class="btn btn-lg btn-dark btn-block">Signup</button>
+    </a>
+    <p ng-if="error!=''" class="errorMsgCSS">{{error}}</p>
 </div>
