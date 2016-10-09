@@ -81,7 +81,6 @@ angular.module('chatroom')
     }
 
     socket.on('new user', function() {
-        console.log("new user");
         $scope.getAllUsers();
     })
 
