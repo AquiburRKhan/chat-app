@@ -16,18 +16,25 @@ exports.signup = function(req, res) {
 
 exports.login = function(req, res) {
     var user = new User(req.query);
-    User.findOne({username: user.username,password: user.password}, function(err, user) {
+    User.findOne({
+        username: user.username,
+        password: user.password
+    }, function(err, user) {
         if (err) {
             return res.send(err);
         }
         // update login status of user
-        User.update({username: user.username},{loginStatus: 'true'}, function(err, user) {
+        User.findOneAndUpdate({
+            username: user.username
+        }, {
+            loginStatus: 'true'
+        }, function(err, user) {
             if (err) {
                 return res.send(err);
             }
-    });
-    res.json(user);
-})
+        });
+        res.json(user);
+    })
 };
 
 exports.getAllUsers = function(req, res) {
@@ -40,11 +47,16 @@ exports.getAllUsers = function(req, res) {
 };
 
 exports.logout = function(req, res) {
-      var user = new User(req.body);
-  User.update({username: user.username},{loginStatus: 'false'}, function(err, user) {
-      if (err) {
-          return res.send(err);
-      }
-      res.json(user);
-});
+    var user = new User(req.body);
+    User.findOneAndUpdate({
+        username: user.username
+    }, {
+        loginStatus: 'false'
+    }, function(err, user) {
+        if (err) {
+            return res.send(err);
+        }
+        res.json(user);
+    });
+
 };

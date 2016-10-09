@@ -1,9 +1,9 @@
 angular.module('chatroom')
 
 .controller('chatRoomController', function($scope, socketService, $http, $routeParams ,$location) {
-    var socket = socketService.connectToSocket();
+    var socket = socketService.getSocket();
     $scope.error = "";
-    $scope.selectedUser = "";
+    $scope.selectedUsername = "";
     $scope.messages = [];
 
     $scope.getAllUsers = function() {
@@ -32,16 +32,15 @@ angular.module('chatroom')
     }
 
     $scope.selectUser = function(selectUser) {
-        if ($scope.selectedUser != selectUser) {
-            $scope.messages = [];
-        }
-        $scope.selectedUser = selectUser;
+        $scope.selectedUsername = selectUser.username;
         $scope.message = "";
 
     }
 
     $scope.sendMessage = function(message) {
+      $scope.messages.push({username: $routeParams.username,message: message});
         var messageDetails = {
+            to : $scope.selectedUsername,
             username: $routeParams.username,
             message: message
         }
@@ -49,6 +48,7 @@ angular.module('chatroom')
     }
 
     socket.on('get message', function(messageDetails) {
+        $scope.selectedUsername = messageDetails.username;
         $scope.messages.push(messageDetails);
         $scope.$apply();
     })
@@ -63,6 +63,7 @@ angular.module('chatroom')
             if (response.data == null) {
                 $scope.error = "Logging out Failed, Please Try Again";
             } else if (response.status == 200 && response.data != null) {
+              socket.emit('user logout', {username: response.data.username});
                 $location.path("/");
             }
 
@@ -71,6 +72,15 @@ angular.module('chatroom')
             $scope.error = "Logging out Users Failed, Please Try Again"
         });
     }
+
+    socket.on('new user', function() {
+      console.log("new user");
+      $scope.getAllUsers();
+    })
+
+    socket.on('user left', function() {
+      $scope.getAllUsers();
+    })
 
 
 })

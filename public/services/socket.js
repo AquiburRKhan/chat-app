@@ -9,4 +9,8 @@ angular.module('chatroom')
      return socket;
   }
 
+  self.getSocket = function(){
+    return socket;
+  }
+
 })

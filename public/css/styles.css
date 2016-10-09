@@ -71,3 +71,7 @@ body {
   border-bottom: 1px solid gray;
   padding-bottom: 10px;
 }
+
+.listCSS{
+  list-style-type: none;
+}

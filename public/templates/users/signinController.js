@@ -1,7 +1,12 @@
 angular.module('user')
 
-.controller('signinController',function($scope, $http, $location){
+.controller('signinController',function($scope, $http, $location, socketService){
   $scope.error = "";
+  var socket;
+
+  $scope.connectToSocket = function(){
+     socket = socketService.connectToSocket();
+  }
 
   $scope.login = function(username, password) {
       $http({
@@ -17,8 +22,8 @@ angular.module('user')
             $scope.error = "Incorrect username or password";
           }
           else if(response.status == 200 && response.data!=null){
-
           $scope.error = "";
+          socket.emit('user login', {username: response.data.username});
           $location.path("/chatroom/"+ response.data.username);
           }
 
